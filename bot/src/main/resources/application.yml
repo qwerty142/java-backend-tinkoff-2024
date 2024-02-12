@@ -1,0 +1,14 @@
+app:
+  telegram-token: 6575057997:AAHMI_IEWmPpfAYqc_ijIJRbaeNz36a1Bq4
+
+spring:
+  application:
+    name: link_track_bot
+  jackson:
+    time-zone: UTC
+
+server:
+  port: 8090
+
+logging:
+  config: classpath:log4j2-plain.xml
