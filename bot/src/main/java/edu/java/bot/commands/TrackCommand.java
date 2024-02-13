@@ -4,10 +4,10 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.request.SendMessage;
 
-public class TrackCommand implements ICommand{
-    public static final String trackCommand = "/track";
-    public static final String trackCommandDescription = "начать отслеживание ссылки";
-    public static final String trackCommandExecuteMessage = "Какую ссылку будем отслеживать?";
+public class TrackCommand implements ICommand {
+    public final String trackCommand = "/track";
+    public final String trackCommandDescription = "начать отслеживание ссылки";
+    public final String trackCommandExecuteMessage = "Какую ссылку будем отслеживать?";
 
     @Override
     public String command() {

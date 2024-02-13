@@ -6,12 +6,13 @@ import edu.java.bot.requestHandle.ILinkProvider;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class ListCommand implements ICommand{
-    private static final String listCommand = "/list";
-    private static final String listCommandDescription = "показать список отслеживаемых ссылок";
-    private static final String executeMessage = "Отслеживаются следующие ссылки:\n\n";
-    private static final String noLinksMessage = "Нет отслеживаемых ссылок";
+public class ListCommand implements ICommand {
+    private final String listCommand = "/list";
+    private final String listCommandDescription = "показать список отслеживаемых ссылок";
+    private final String executeMessage = "Отслеживаются следующие ссылки:\n\n";
+    private final String noLinksMessage = "Нет отслеживаемых ссылок";
     private final ILinkProvider linksProvider;
+
     @Override
     public String command() {
         return listCommand;

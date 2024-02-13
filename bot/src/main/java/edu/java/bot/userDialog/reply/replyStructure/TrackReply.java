@@ -8,12 +8,13 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class TrackReply implements Reply {
-    private static final String invalidLinkMessage = "Неверная ссылка";
-    private static final String beginTrackingMessage = "Ссылка добавлена в список ";
-    public static final String trackCommandExecuteMessage = "Введите ссылку, которую хотите отслеживать";
+    private final String invalidLinkMessage = "Неверная ссылка";
+    private final String beginTrackingMessage = "Ссылка добавлена в список ";
+    public final String trackCommandExecuteMessage = "Введите ссылку, которую хотите отслеживать";
 
     private final LinkValidator linkValidator = new LinkValidator();
     private final ILinkTrack linksTracker;
+
     @Override
     public String reply() {
         return trackCommandExecuteMessage;

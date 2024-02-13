@@ -6,13 +6,13 @@ import edu.java.bot.requestHandle.LinkRepository;
 import edu.java.bot.userDialog.reply.replyStructure.Reply;
 import edu.java.bot.userDialog.reply.replyStructure.TrackReply;
 import edu.java.bot.userDialog.reply.replyStructure.UnTrackReply;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.List;
 
 @Component("standartReplyProcessor")
-public class ReplyProcessor implements UserReplyProcessor{
-    private static final String unsupportedReplyMessage = "Ошибка";
+public class ReplyProcessor implements UserReplyProcessor {
+    private final String unsupportedReplyMessage = "Ошибка";
     private final List<? extends Reply> replies;
 
     public ReplyProcessor(@Autowired LinkRepository linkRepository) {
@@ -29,8 +29,8 @@ public class ReplyProcessor implements UserReplyProcessor{
 
     @Override
     public SendMessage process(Update update) {
-        for(var reply : replies) {
-            if(reply.supports(update)) {
+        for (var reply : replies) {
+            if (reply.supports(update)) {
                 return reply.handle(update);
             }
         }

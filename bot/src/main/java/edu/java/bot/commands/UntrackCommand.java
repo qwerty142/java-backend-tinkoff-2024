@@ -4,10 +4,11 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.request.SendMessage;
 
-public class UntrackCommand implements ICommand{
-    public static final String untrackCommand = "/untrack";
-    public static final String untrackCommandDescription = "прекратить отслеживание ссылки";
-    public static final String untrackCommandExecuteMessage = "Какую ссылку перестанем отслеживать?";
+public class UntrackCommand implements ICommand {
+    public final String untrackCommand = "/untrack";
+    public final String untrackCommandDescription = "прекратить отслеживание ссылки";
+    public final String untrackCommandExecuteMessage = "Какую ссылку перестанем отслеживать?";
+
     @Override
     public String command() {
         return untrackCommand;

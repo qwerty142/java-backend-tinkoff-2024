@@ -9,15 +9,15 @@ import edu.java.bot.commands.StartCommand;
 import edu.java.bot.commands.TrackCommand;
 import edu.java.bot.commands.UntrackCommand;
 import edu.java.bot.requestHandle.LinkRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component("standartMessageProcessor")
 public class MessageProcessor implements UserMessageProcessor {
-    private static final String helpCommandUnavailableMessage = "Недоступно";
-    private static final String unsupportedCommandMessage = "Неподдерживаемая команда";
+    private final String helpCommandUnavailableMessage = "Недоступно";
+    private final String unsupportedCommandMessage = "Неподдерживаемая команда";
     private final List<ICommand> commands;
 
     public MessageProcessor(
@@ -42,8 +42,8 @@ public class MessageProcessor implements UserMessageProcessor {
 
     @Override
     public SendMessage process(Update update) {
-        for(var command : commands) {
-            if(command.supports(update)) {
+        for (var command : commands) {
+            if (command.supports(update)) {
                 return command.handle(update);
             }
         }
