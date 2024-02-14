@@ -13,18 +13,18 @@ import com.pengrad.telegrambot.response.BaseResponse;
 import edu.java.bot.userDialog.message.UserMessageProcessor;
 import edu.java.bot.userDialog.reply.UserReplyProcessor;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 public class BotApplication implements AutoCloseable, UpdatesListener {
     private final TelegramBot bot;
     private final UserMessageProcessor userMessageProcessor;
     private final UserReplyProcessor userReplyProcessor;
 
+    @Autowired
     public BotApplication(
         @Value("${app.telegram-token}") String token,
         @Qualifier("standartMessageProcessor") UserMessageProcessor userMessageProcessor,
