@@ -8,6 +8,8 @@ import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 import edu.java.bot.bot.BotApplication;
+import edu.java.bot.commands.HelpCommand;
+import edu.java.bot.commands.ICommand;
 import edu.java.bot.requestHandle.LinkRepository;
 import edu.java.bot.userDialog.message.MessageProcessor;
 import edu.java.bot.userDialog.reply.ReplyProcessor;
@@ -18,6 +20,7 @@ import org.mockito.Captor;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import static org.assertj.core.api.Assertions.as;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -165,5 +168,11 @@ public class BotWorkTest {
         ReplyProcessor processor = new ReplyProcessor(repository);
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Ошибка");
+    }
+
+    @Test
+    public void workTest() {
+        ICommand command = new HelpCommand();
+        assertThat(command.description()).isEqualTo("помощь");
     }
 }
