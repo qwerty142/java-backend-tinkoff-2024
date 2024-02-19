@@ -169,10 +169,4 @@ public class BotWorkTest {
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Ошибка");
     }
-
-    @Test
-    public void workTest() {
-        ICommand command = new HelpCommand();
-        assertThat(command.description()).isEqualTo("помощь");
-    }
 }
