@@ -14,7 +14,6 @@ public class BotApplicationRunner {
 
     public static void main(String[] args) {
         var contexts = SpringApplication.run(BotApplicationRunner.class, args);
-        ApplicationConfig config = contexts.getBean(ApplicationConfig.class);
         var bot = contexts.getBean(BotApplication.class);
         bot.start();
     }
