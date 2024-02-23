@@ -35,6 +35,8 @@ public class HelpCommand implements ICommand {
         var stringBuilder = new StringBuilder();
         for (var command : commands) {
             stringBuilder.append(command.command());
+            stringBuilder.append(" ");
+            stringBuilder.append(command.description());
             stringBuilder.append('\n');
         }
         return new SendMessage(update.message().chat().id(), stringBuilder.toString()).parseMode(ParseMode.Markdown);

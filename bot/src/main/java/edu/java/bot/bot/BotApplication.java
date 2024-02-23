@@ -49,11 +49,11 @@ public class BotApplication implements AutoCloseable, UpdatesListener {
 
     @Override
     public int process(List<Update> listUpdate) {
-            for (var update : listUpdate) {
-                SendMessage request =
-                    isReply(update) ? userReplyProcessor.process(update) : userMessageProcessor.process(update);
-                execute(request);
-            }
+        for (var update : listUpdate) {
+            SendMessage request =
+                isReply(update) ? userReplyProcessor.process(update) : userMessageProcessor.process(update);
+            execute(request);
+        }
 
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
@@ -64,8 +64,6 @@ public class BotApplication implements AutoCloseable, UpdatesListener {
     }
 
     private void setMyCommandsMenu() {
-        /*List<BotCommand> com = new ArrayList<>();
-        com.add(new BotCommand("/start", "abab"));*/
         BotCommand[] commands = userMessageProcessor.commands()
             .stream()
             .map(x -> new BotCommand(x.command(), x.description()))
