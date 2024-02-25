@@ -1,20 +1,19 @@
 package edu.java.bot.commands;
 
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.NonNull;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HelpCommand implements ICommand {
     private static final String HELP_COMMAND = "/help";
     private static final String HELP_DESCRIPTION = "помощь";
     private List<ICommand> commands;
-
-    public HelpCommand(@NonNull List<ICommand> commands) {
-        this.commands = commands;
-    }
 
     public HelpCommand() {
         this.commands = new ArrayList<>();
@@ -39,6 +38,6 @@ public class HelpCommand implements ICommand {
             stringBuilder.append(command.description());
             stringBuilder.append('\n');
         }
-        return new SendMessage(update.message().chat().id(), stringBuilder.toString()).parseMode(ParseMode.Markdown);
+        return new SendMessage(update.message().chat().id(), stringBuilder.toString());
     }
 }

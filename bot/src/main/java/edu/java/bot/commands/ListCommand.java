@@ -4,8 +4,11 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.requestHandle.ILinkProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
+@Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ListCommand implements ICommand {
     private final String listCommand = "/list";
     private final String listCommandDescription = "показать список отслеживаемых ссылок";

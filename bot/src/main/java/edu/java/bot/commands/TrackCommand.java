@@ -3,7 +3,9 @@ package edu.java.bot.commands;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.request.SendMessage;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TrackCommand implements ICommand {
     public final String trackCommand = "/track";
     public final String trackCommandDescription = "начать отслеживание ссылки";

@@ -4,8 +4,11 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.requestHandle.LinkRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
+@Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class StartCommand implements ICommand {
     private final String startCommand = "/start";
     private final String startDescription = "Комманда регестрирует пользователя";

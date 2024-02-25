@@ -11,8 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class BotApplicationRunner {
 
     public static void main(String[] args) {
-        var contexts = SpringApplication.run(BotApplicationRunner.class, args);
-        var bot = contexts.getBean(BotApplication.class);
-        bot.start();
+        SpringApplication.run(BotApplicationRunner.class, args).getBean(BotApplication.class);
     }
 }

@@ -10,9 +10,15 @@ import com.pengrad.telegrambot.response.SendResponse;
 import edu.java.bot.bot.BotApplication;
 import edu.java.bot.commands.HelpCommand;
 import edu.java.bot.commands.ICommand;
+import edu.java.bot.commands.ListCommand;
+import edu.java.bot.commands.StartCommand;
+import edu.java.bot.commands.TrackCommand;
+import edu.java.bot.commands.UntrackCommand;
 import edu.java.bot.requestHandle.LinkRepository;
 import edu.java.bot.userDialog.message.MessageProcessor;
 import edu.java.bot.userDialog.reply.ReplyProcessor;
+import edu.java.bot.userDialog.reply.replyStructure.TrackReply;
+import edu.java.bot.userDialog.reply.replyStructure.UnTrackReply;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -20,6 +26,7 @@ import org.mockito.Captor;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import java.util.List;
 import static org.assertj.core.api.Assertions.as;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,8 +43,14 @@ public class BotWorkTest {
 
     void setupTestFields() {
         repository = Mockito.mock(LinkRepository.class);
-        var messageProcessor = new MessageProcessor(repository);
-        var replyProcessor = new ReplyProcessor(repository);
+        var messageProcessor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
+        var replyProcessor = new ReplyProcessor(List.of(new TrackReply(repository), new UnTrackReply(repository)));
         botApplication = new BotApplication("token", messageProcessor, replyProcessor);
         // botApplication.bot = bot;
         ReflectionTestUtils.setField(botApplication, "bot", bot);
@@ -76,8 +89,24 @@ public class BotWorkTest {
     @Test
     public void testMessageProcessorHelp() {
         setupUpdate("/help");
-        String res = "/track\n/untrack\n/start\n/list\n/help\n";
-        MessageProcessor processor = new MessageProcessor(repository);
+        String res = "/track начать отслеживание ссылки\n" +
+            "/untrack прекратить отслеживание ссылки\n" +
+            "/start Комманда регестрирует пользователя\n" +
+            "/list показать список отслеживаемых ссылок\n" +
+            "/help помощь\n";
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new TrackCommand(),
+            new UntrackCommand(),
+            new StartCommand(repository),
+            new ListCommand(repository),
+            new HelpCommand(List.of(
+                new TrackCommand(),
+                new UntrackCommand(),
+                new StartCommand(repository),
+                new ListCommand(repository),
+                new HelpCommand()
+            ))
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo(res);
     }
@@ -88,7 +117,13 @@ public class BotWorkTest {
     public void testMessageProcessorList() {
         setupTestFields();
         setupUpdate("/list");
-        MessageProcessor processor = new MessageProcessor(repository);
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Нет отслеживаемых ссылок");
     }
@@ -99,7 +134,13 @@ public class BotWorkTest {
     public void testMessageProcessorStart() {
         setupTestFields();
         setupUpdate("/start");
-        MessageProcessor processor = new MessageProcessor(repository);
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Готово");
     }
@@ -109,7 +150,13 @@ public class BotWorkTest {
     @Test
     public void testMessageProcessorTrack() {
         setupUpdate("/track");
-        MessageProcessor processor = new MessageProcessor(repository);
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Какую ссылку будем отслеживать?");
     }
@@ -119,7 +166,13 @@ public class BotWorkTest {
     @Test
     public void testMessageProcessorUntrack() {
         setupUpdate("/untrack");
-        MessageProcessor processor = new MessageProcessor(repository);
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Какую ссылку перестанем отслеживать?");
     }
@@ -129,7 +182,13 @@ public class BotWorkTest {
     @Test
     public void testMessageProcessorInvalidCommand() {
         setupUpdate("/abacaba");
-        MessageProcessor processor = new MessageProcessor(repository);
+        MessageProcessor processor = new MessageProcessor(List.of(
+            new HelpCommand(),
+            new ListCommand(repository),
+            new StartCommand(repository),
+            new TrackCommand(),
+            new UntrackCommand()
+        ));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Неподдерживаемая команда");
     }
@@ -141,7 +200,7 @@ public class BotWorkTest {
         setupTestFields();
         setupUpdate("Введите ссылку, которую хотите отслеживать");
         setupReply("Введите ссылку, которую хотите отслеживать");
-        ReplyProcessor processor = new ReplyProcessor(repository);
+        ReplyProcessor processor = new ReplyProcessor(List.of(new TrackReply(repository), new UnTrackReply(repository)));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Ссылка добавлена в список ");
     }
@@ -153,7 +212,7 @@ public class BotWorkTest {
         setupTestFields();
         setupUpdate("Какую ссылку больше не отслеживать?");
         setupReply("Какую ссылку больше не отслеживать?");
-        ReplyProcessor processor = new ReplyProcessor(repository);
+        ReplyProcessor processor = new ReplyProcessor(List.of(new TrackReply(repository), new UnTrackReply(repository)));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Ссылка больше не отслеживается");
     }
@@ -165,7 +224,7 @@ public class BotWorkTest {
         setupTestFields();
         setupUpdate("aba");
         setupReply("aba");
-        ReplyProcessor processor = new ReplyProcessor(repository);
+        ReplyProcessor processor = new ReplyProcessor(List.of(new TrackReply(repository), new UnTrackReply(repository)));
         SendMessage message = processor.process(updateSimulation);
         assertThat(message.getParameters().get("text")).isEqualTo("Ошибка");
     }
