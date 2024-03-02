@@ -10,7 +10,9 @@ app:
 spring:
   application:
     name: scrapper
-
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 server:
   port: 8080
 
