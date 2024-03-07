@@ -3,6 +3,9 @@ app:
     enable: true
     interval: 15000
     force-check-delay: 15000
+  stackoverlowlink: ${STACKOVERFLOW_DEFAULT_LINK:https://api.stackexchange.com/2.3/}
+  githublink: ${GITHUB_DEFAULT_LINK:https://api.github.com}
+
 
 spring:
   application:

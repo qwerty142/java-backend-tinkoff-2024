@@ -5,15 +5,11 @@ import lombok.NonNull;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class GithubClient  implements IGithubWebClient {
-    private static final String BASE_URL = "https://api.github.com";
+    /*private static final String BASE_URL = "https://api.github.com";*/
     WebClient webClient;
 
     public GithubClient(String url) {
-        if (url.isEmpty()) {
-            webClient = WebClient.builder().baseUrl(BASE_URL).build();
-        } else {
-            webClient = WebClient.builder().baseUrl(url).build();
-        }
+        webClient = WebClient.builder().baseUrl(url).build();
     }
 
     @Override
