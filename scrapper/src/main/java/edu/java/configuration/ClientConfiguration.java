@@ -4,7 +4,6 @@ import edu.java.httpClients.githubClients.GithubClient;
 import edu.java.httpClients.githubClients.IGithubWebClient;
 import edu.java.httpClients.stackoverflowClients.IStackOverflowWebClient;
 import edu.java.httpClients.stackoverflowClients.StackoverflowClient;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
