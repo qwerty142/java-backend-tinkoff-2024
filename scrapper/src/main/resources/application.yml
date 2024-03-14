@@ -5,12 +5,15 @@ app:
     force-check-delay: 15000
   stackoverlowlink: ${STACKOVERFLOW_DEFAULT_LINK:https://api.stackexchange.com/2.3/}
   githublink: ${GITHUB_DEFAULT_LINK:https://api.github.com}
+  baselink: ${BASE_LINK:http://localhost:8080}
 
 
 spring:
   application:
     name: scrapper
-
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 server:
   port: 8080
 
