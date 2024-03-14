@@ -7,17 +7,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 public class ScraperLinksClient {
-    private static final String BASE_URL = "http:///localhost:9080";
     private static final String PATH_LINK = "/links";
     private static final String HEADER = "Tg-Chat-Id";
     private WebClient client;
 
     public ScraperLinksClient(String url) {
         client = WebClient.builder().baseUrl(url).build();
-    }
-
-    public ScraperLinksClient() {
-        this(BASE_URL);
     }
 
     public ScraperListLinksResponse get(Long id) {

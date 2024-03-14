@@ -4,16 +4,11 @@ import edu.java.bot.clients.dto.ScraperChatResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class ScraperChatClient {
-    private static final String BASE_URL = "http:///localhost:9080";
     private static final String PATH_CHAT_ID = "/tg-chat/{id}";
     private WebClient client;
 
     public ScraperChatClient(String url) {
         client = WebClient.builder().baseUrl(url).build();
-    }
-
-    public ScraperChatClient() {
-        this(BASE_URL);
     }
 
     public ScraperChatResponse add(long id) {
