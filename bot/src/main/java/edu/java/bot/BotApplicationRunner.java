@@ -1,6 +1,5 @@
 package edu.java.bot;
 
-import edu.java.bot.bot.BotApplication;
 import edu.java.bot.configuration.ApplicationConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class BotApplicationRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(BotApplicationRunner.class, args).getBean(BotApplication.class);
+        SpringApplication.run(BotApplicationRunner.class, args);
     }
 }

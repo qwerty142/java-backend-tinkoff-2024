@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor()
 public class UnTrackReply implements Reply {
     private final String invalidLinkMessage = "Неверная ссылка";
     private final String stopTrackingMessage = "Ссылка больше не отслеживается";
     public final String untrackCommandExecuteMessage = "Какую ссылку больше не отслеживать?";
 
-    private final LinkValidator linkValidator = new LinkValidator();
+    private final LinkValidator linkValidator;
     private final ILinkUntrack linksUntracker;
 
     @Override

@@ -5,17 +5,16 @@ import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.requestHandle.ILinkTrack;
 import edu.java.bot.requestHandle.LinkValidator;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor()
 public class TrackReply implements Reply {
     private final String invalidLinkMessage = "Неверная ссылка";
     private final String beginTrackingMessage = "Ссылка добавлена в список ";
     public final String trackCommandExecuteMessage = "Введите ссылку, которую хотите отслеживать";
 
-    private final LinkValidator linkValidator = new LinkValidator();
+    private final LinkValidator linkValidator;
     private final ILinkTrack linksTracker;
 
     @Override
