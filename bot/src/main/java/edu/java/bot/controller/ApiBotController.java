@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/updates")
 public class ApiBotController {
     @PostMapping
-    public LinkUpdateResponse update(@RequestBody LinkUpdateRequest request) {
-        return new LinkUpdateResponse();
+    public void update(@RequestBody LinkUpdateRequest request) {
+        return;
     }
 }

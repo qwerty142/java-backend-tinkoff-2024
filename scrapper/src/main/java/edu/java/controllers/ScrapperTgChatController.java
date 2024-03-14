@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tg-chat")
 public class ScrapperTgChatController {
     @PostMapping("/{id}")
-    public BotResponse registerChat(
+    public void registerChat(
         @PathVariable("id") long id
     ) {
-        return new BotResponse("", "", "", "", new String[]{});
+        return;
     }
 
     @DeleteMapping("/{id}")
