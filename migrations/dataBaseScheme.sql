@@ -20,3 +20,10 @@ CREATE TABLE chatAndLink
     chatId BIGINT NOT NULL REFERENCES chat (chatId),
     PRIMARY KEY(linkId, chatId)
 );
+
+CREATE TABLE linkStackoverflow (
+    linkId BIGINT PRIMARY KEY REFERENCES link (linkId),
+    commentsAmount INT DEFAULT 0,
+    answersAmount INT DEFAULT 0,
+    answered BOOLEAN DEFAULT FALSE
+);
