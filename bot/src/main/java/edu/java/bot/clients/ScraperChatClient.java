@@ -1,7 +1,9 @@
 package edu.java.bot.clients;
 
 import edu.java.bot.clients.dto.ScraperChatResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 public class ScraperChatClient {
     private static final String PATH_CHAT_ID = "/tg-chat/{id}";
@@ -25,6 +27,7 @@ public class ScraperChatClient {
             .delete()
             .uri(PATH_CHAT_ID, id)
             .retrieve()
+            .onStatus(HttpStatus.BAD_REQUEST::equals, (clientResponse) -> Mono.empty())
             .bodyToMono(ScraperChatResponse.class)
             .block();
     }

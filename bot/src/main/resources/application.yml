@@ -1,6 +1,6 @@
 app:
   telegram-token: ${TELEGRAM_TOKEN}
-  baseLink: ${BASE_LINK:http:///localhost:9080}
+  baseLink: http://localhost:9080
 
 spring:
   application:

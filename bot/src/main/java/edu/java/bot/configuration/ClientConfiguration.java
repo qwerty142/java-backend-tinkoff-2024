@@ -3,10 +3,14 @@ package edu.java.bot.configuration;
 import edu.java.bot.clients.ScraperChatClient;
 import edu.java.bot.clients.ScraperLinksClient;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
+@EnableConfigurationProperties(ApplicationConfig.class)
+// @ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
+// @NoArgsConstructor
+@Configuration
 public class ClientConfiguration {
 
     @Bean
