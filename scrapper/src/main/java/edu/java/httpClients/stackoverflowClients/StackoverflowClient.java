@@ -15,7 +15,7 @@ public class StackoverflowClient implements IStackOverflowWebClient {
     public ResponseStackOverflow fetch(long id) {
         return webClient
             .get()
-            .uri("/questions/{questionId}?site=stackoverflow", id)
+            .uri("/questions/{questionId}", id)
             .retrieve()
             .bodyToMono(ResponseStackOverflow.class)
             .block();

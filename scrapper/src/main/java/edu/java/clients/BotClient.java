@@ -18,7 +18,7 @@ public class BotClient {
         long id,
         String url,
         String description,
-        Long[] ids
+        long[] ids
     ) {
         return client
             .post()

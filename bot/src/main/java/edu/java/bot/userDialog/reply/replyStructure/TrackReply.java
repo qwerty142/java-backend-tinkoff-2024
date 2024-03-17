@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class TrackReply implements Reply {
     private final String invalidLinkMessage = "Неверная ссылка";
     private final String beginTrackingMessage = "Ссылка добавлена в список ";
-    public final String trackCommandExecuteMessage = "Какую ссылку будем отслеживать?";
+    public final String trackCommandExecuteMessage = "Введите ссылку, которую хотите отслеживать";
 
     private final LinkValidator linkValidator;
     private final ILinkTrack linksTracker;

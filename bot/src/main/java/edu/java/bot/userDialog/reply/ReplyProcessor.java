@@ -22,10 +22,8 @@ public class ReplyProcessor implements UserReplyProcessor {
         return replies;
     }
 
-    @SuppressWarnings("checkstyle:LineLength") @Override
+    @Override
     public SendMessage process(Update update) {
-        /*return new SendMessage(update.message().chat().id(), update.message().replyToMessage().text() + replies.get(0).reply());*/
-
         for (var reply : replies) {
             if (reply.supports(update)) {
                 return reply.handle(update);

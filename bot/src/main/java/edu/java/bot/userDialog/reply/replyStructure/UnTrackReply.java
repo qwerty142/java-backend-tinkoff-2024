@@ -5,6 +5,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.requestHandle.ILinkUntrack;
 import edu.java.bot.requestHandle.LinkValidator;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class UnTrackReply implements Reply {
     private final String invalidLinkMessage = "Неверная ссылка";
     private final String stopTrackingMessage = "Ссылка больше не отслеживается";
-    public final String untrackCommandExecuteMessage = "Какую ссылку перестанем отслеживать?";
+    public final String untrackCommandExecuteMessage = "Какую ссылку больше не отслеживать?";
 
     private final LinkValidator linkValidator;
     private final ILinkUntrack linksUntracker;
