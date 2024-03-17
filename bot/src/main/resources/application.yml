@@ -1,0 +1,17 @@
+app:
+  telegram-token: ${TELEGRAM_TOKEN}
+  baseLink: http://localhost:9080
+
+spring:
+  application:
+    name: link_track_bot
+  jackson:
+    time-zone: UTC
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+server:
+  port: 8090
+
+logging:
+  config: classpath:log4j2-plain.xml
