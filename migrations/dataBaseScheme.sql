@@ -21,6 +21,7 @@ CREATE TABLE chatAndLink
     PRIMARY KEY(linkId, chatId)
 );
 
+--changeset qwerty142:2
 CREATE TABLE linkStackoverflow (
     linkId BIGINT PRIMARY KEY REFERENCES link (linkId),
     commentsAmount INT DEFAULT 0,
