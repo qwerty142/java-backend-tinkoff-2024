@@ -14,4 +14,13 @@ public class LinkMapper {
     public LinkDto linkToLinkDto(Link link) {
         return new LinkDto(link.getLinkId(), link.getLink(), link.getLastCreated(), link.getLastUpdated());
     }
+
+    public LinkDto linkFromJooqToLinkDto(edu.java.domain.jooq.jooqGen.tables.pojos.Link link) {
+        return new LinkDto(
+            link.getLinkid(),
+            link.getUrl(),
+            link.getCreatedAt(),
+            link.getUpdatedAt()
+        );
+    }
 }

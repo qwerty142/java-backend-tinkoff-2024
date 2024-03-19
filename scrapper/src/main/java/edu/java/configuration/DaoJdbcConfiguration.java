@@ -3,9 +3,12 @@ package edu.java.configuration;
 import edu.java.domain.jdbc.dao.JdbChatRepository;
 import edu.java.domain.jdbc.dao.JdbcLinkChatRepository;
 import edu.java.domain.jdbc.dao.JdbcLinkRepository;
+import edu.java.domain.jdbc.dao.JdbcStackoverflowLinkRepository;
 import edu.java.mapers.LinkMapper;
+import edu.java.mapers.StackOverflowLinkMapper;
 import edu.java.service.jdbc.JdbcLinkAndChatService;
 import edu.java.service.jdbc.JdbcLinkService;
+import edu.java.service.jdbc.JdbcStackoverflowLinkService;
 import edu.java.service.jdbc.JdbcTgChatService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,5 +38,13 @@ public class DaoJdbcConfiguration {
         JdbcLinkChatRepository linkChatRepository
     ) {
         return new JdbcLinkAndChatService(linkChatRepository, new LinkMapper());
+    }
+
+    @Bean
+    public JdbcStackoverflowLinkService stackoverflowLinkService(
+        JdbcStackoverflowLinkRepository repository,
+        StackOverflowLinkMapper mapper
+    ) {
+        return new JdbcStackoverflowLinkService(repository, mapper);
     }
 }

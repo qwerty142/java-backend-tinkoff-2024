@@ -2,6 +2,7 @@ package edu.java.configuration;
 
 import edu.java.httpClients.githubClients.GithubClient;
 import edu.java.httpClients.stackoverflowClients.StackoverflowClient;
+import edu.java.service.StackOverflowLinkService;
 import edu.java.service.handlersOfApi.GithubHandler;
 import edu.java.service.handlersOfApi.StackoverflowHandler;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,8 @@ import org.springframework.context.annotation.Primary;
 public class ApiHandlersConfiguration {
     @Bean(name = "stackOverflowApiHandler")
     public StackoverflowHandler stackOverflowApiHandler(
-        StackoverflowClient stackOverflowClient
+        StackoverflowClient stackOverflowClient,
+        StackOverflowLinkService stackOverflowLinkService
     ) {
         return new StackoverflowHandler(stackOverflowClient);
     }
