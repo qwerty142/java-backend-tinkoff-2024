@@ -1,8 +1,8 @@
 package edu.java.service.dto;
 
+import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import java.time.OffsetDateTime;
 
 @Data
 @AllArgsConstructor
