@@ -22,18 +22,29 @@ public class StackOverflowTest {
     OffsetDateTime time = OffsetDateTime.of(2024, 2, 23, 23, 23, 23, 0, ZoneOffset.UTC);
     void setStubGoodResult() {
         WireMock.configureFor("localhost", 8088);
-        stubFor(get(urlMatching("/questions/1"))
+        stubFor(get(urlMatching("/questions/1" + "?site=stackoverflow"))
             .willReturn(
                 aResponse()
                     .withHeader("Content-Type", "application/json")
                     .withStatus(200)
                     .withBody(
                         """
+                        {
+                        "items": [
                             {
-                            "title": "aba",
-                            "last_activity_date": %d
+                              "tags": [
+                                "java"
+                              ],
+                              "owner": {
+                                "account_id": 1
+                              },
+                              "is_answered": true,
+                              "last_activity_date": %d,
+                              "title": "aba"
                             }
-                            """.formatted(time.toEpochSecond()))
+                          ]
+                        }
+                        """.formatted(time.toEpochSecond()))
             )
         );
     }

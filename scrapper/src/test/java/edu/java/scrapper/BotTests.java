@@ -43,7 +43,7 @@ public class BotTests {
             1,
             "https://github.com/qwerty142/java-backend-tinkoff-2024",
             "",
-            new long[] {0L}
+            new Long[] {0L}
         ));
     }
 
@@ -54,7 +54,7 @@ public class BotTests {
             1,
             "https://github.com/qwerty142/java-backend-tinkoff-2024",
             "",
-            new long[] {0L}
+            new Long[] {0L}
         ));
     }
 }

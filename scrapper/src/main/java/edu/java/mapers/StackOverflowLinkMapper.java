@@ -2,8 +2,11 @@ package edu.java.mapers;
 
 import edu.java.domain.jdbc.dao.StackoverflowLink;
 import edu.java.domain.jooq.jooqGen.tables.pojos.Linkstackoverflow;
+import edu.java.domain.jpa.dto.Link;
 import edu.java.httpClients.dto.StackoverlowLinkDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StackOverflowLinkMapper {
     public StackoverflowLink dtoToJdbc(StackoverlowLinkDto link) {
         return new StackoverflowLink(
@@ -40,5 +43,22 @@ public class StackOverflowLinkMapper {
             link.getAnswersamount(),
             link.getAnswered()
         );
+    }
+
+    public StackoverlowLinkDto jpaToDto(edu.java.domain.jpa.dto.StackoverflowLink link) {
+        return new StackoverlowLinkDto(
+            link.getLinkId(),
+            link.getCommentsAmount(),
+            link.getAnswersAmount(),
+            link.getAnswered()
+        );
+    }
+
+    public edu.java.domain.jpa.dto.StackoverflowLink dtoToJpa(StackoverlowLinkDto linkDto) {
+        return edu.java.domain.jpa.dto.StackoverflowLink.builder()
+            .linkId(linkDto.getId())
+            .answersAmount(linkDto.getAmountAnswers())
+            .commentsAmount(linkDto.getAmountAnswers())
+            .answered(linkDto.getStatus()).build();
     }
 }
