@@ -23,4 +23,13 @@ public class LinkMapper {
             link.getUpdatedAt()
         );
     }
+
+    public LinkDto linkFromJpaToDto(edu.java.domain.jpa.dto.Link link) {
+        return new LinkDto(
+            link.getId(),
+            link.getUrl(),
+            link.getCreatedAt(),
+            link.getUpdatedAt()
+        );
+    }
 }
